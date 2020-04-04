@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <!-- jQuery library -->
+    <meta charset="utf-8">
+    <meta name='theme-color' content='#181838'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu|Mukta" rel="stylesheet">
+    <!--bootstrap css-->
+    <meta name="viewport" content="user-scalable=no , width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!--font awesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+    <title>SPlit</title>
+</head>
+
+<body>
+    <div id='cover'>
+        <center><img src="split logo.png" alt="" srcset="" style="margin-top:50%;width:150px;height: 60px;"></center>
+        <center><img src="load.gif" alt="" srcset="" style="margin-top:1%;width:50px;height:50px;"></center>
+    </div>
+    <div id='cover-1'>
+        <span style="position:absolute;float:right;top:60px;right:15px;color:black;cursor:pointer;" onclick="closeThis(this.parentNode.id)" id='loginView'>&#10008;</span>
+        <div id="signInView">
+            <center>
+                <h2 style="font-family:montserrat;">Please Sign in ...</h2><br>
+                <div class="g-signin2" data-onsuccess="onSignIn" style="color:black;width:150px;height:40px;">
+                </div>
+                <br>
+                <p>We promise that we won't share your personal information for trading or other purposes. It shall solely be utilized for our records and analytics .</p>
+                <span id='login-success-cont' onclick="closeThis('cover-1')" class="btn" style="background:darkgreen;color:white;font-size:20px;font-weight:lighter;display: none;">Continue
+                    &rarr;
+                </span>
+                <h4 style="margin-top:100px;">No Profit Initiative</h4>
+            </center>
+        </div>
+    </div>
+    <div id="main">
+        <div id="navbar">
+
+            <img src="split logo.png" alt="logo" srcset="" id="logo">
+            <a class="glyphicon glyphicon-log-out" id='toggle' onclick="signOut();"></a>
+            <a class="glyphicon glyphicon-th" id='toggle' href="info.html"></a>
+            <a id='toggle'><img src="" alt="" id='thumb' style="display:none;"></a>
+        </div>
+        <div id='intro' style='backgrounf'>
+      
+
+            <center>
+                <h2 id='username'></h2>
+            </center>
+
+            <div id="itemsList">
+                <h2 id='sub' style="color:#181838">Gems<span class="btn btn-success" style="float:right;margin-top:0;" onclick="shuffle()">Shuffle</span></h2>
+
+
+            </div>
+            <center>
+                <div class="g-signin2" data-onsuccess="onSignIn" style="color:black;width:150px;height:40px;margin-bottom:100px;">
+            </center>
+            <center>
+                <h4>More songs to come very soon...</h4>
+            </center>
+            </div>
+            <div id="fullPageControls">
+                <i class="fas fa-close" id='close' onclick="closeView()">&#x2715</i>
+                <center>
+                    <img src="thumbnails/default.jpg" alt="thumbnail" id='thumbnail'>
+                    <h4 id='full-title'>
+                        Slim's waiting...
+                    </h4><br>
+                    <span class="glyphicon glyphicon-backward" id='fc-backward' onclick="previous()"></span>
+                    <span class='glyphicon glyphicon-play' id='fc-play' onclick="playing_current()"></span>
+                    <span class="glyphicon glyphicon-forward" id='fc-forward' onclick="next()"></span>
+                    <br>
+                </center>
+                <div id='fc-seek-bar-container'>
+                    <input type="range" min="1" class='slide' value='0' id='0' oninput="setSeek(this.id)">
+                </div>
+                <center>
+                    <h4 id='played_time' style="color:white;"></h4><br>
+                    <span class='glyphicon glyphicon-repeat' style="font-size:18px;color: white;padding:3px;"></span>
+                    <span class='glyphicon glyphicon-retweet' style="font-size:18px;color: white;padding:3px;"></span>
+                </center>
+
+            </div>
+            <!--google ssign in button-->
+
+            <!--controls at the bottom -->
+            <div id="control-panel">
+                <h6 id='songTitle' align='center' onclick="changeView()">Slim's Waiting...</h6>
+
+                <span class="fa fa-backward" id='backward' onclick="previous()"></span>
+                <span class='fas fa-play' id='play' onclick="playing_current()"></span>
+                <span class="fa fa-forward" id='forward' onclick="next()"></span>
+                <div id='seek-bar-container'>
+                    <input type="range" min="1" class='slide' value='0' id='1' oninput="setSeek(this.id)">
+                </div>
+
+            </div>
+
+        </div>
+
+</body>
+<!--scripts-->
+
+
+<script>
+    //firebase api configuration
+ 
+    firebase.initializeApp(config);
+    var database = firebase.database();
+
+    function writeUserData(userId, name, email, imageUrl) {
+        firebase.database().ref('users/' + userId).set({
+            username: name,
+            email: email,
+            profile_picture: imageUrl
+        }, function(error) {
+            if (error) {
+                console.log(error);
+            } else {
+                // Data saved successfully!
+                console.log("Data SENT");
+            }
+        });
+    }
+</script>
+
+<script src="main.js"></script>
+<!--bootsrap-->
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+<!--Google sign-in api -->
+<script>
+    function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        document.getElementById('username').innerText = 'Welcome, ' + profile.getName();
+        document.getElementById('login-success-cont').style.display = 'block';
+        writeUserData(profile.getId(), profile.getName(), profile.getEmail(), profile.getImageUrl());
+    }
+    var auth2 = gapi.auth2.getAuthInstance();
+    var profile = auth2.currentUser.get().getBasicProfile();
+    if (auth2.isSignedIn.get()) {
+        var profile = auth2.currentUser.get().getBasicProfile();
+        document.getElementById('username').innerText = 'Welcome, ' + profile.getName();
+        document.getElementById('cover-1').style.display = 'none';
+        writeUserData(profile.getId(), profile.getName(), profile.getEmail(), profile.getImageUrl());
+
+    }
+
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function() {
+            console.log('User signed out.');
+            document.getElementById('username').innerText = '';
+        });
+    }
+</script>
+
+</html>

@@ -1,0 +1,404 @@
+body,
+div,
+html {
+    margin: 0;
+    scroll-padding: 0;
+    scroll-margin: 0;
+    background: #f8f8fa;
+}
+
+#main {
+    position: absolute;
+    width: 100%;
+    padding: 0;
+}
+
+#navbar #logo {
+    width: 135px;
+    height: 50px;
+    float: left;
+    padding: 3px;
+}
+
+#navbar {
+    box-shadow: 2px 2px 2px gray;
+    position: fixexe    d;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background: #181838;
+    width: 100%;
+    height: 55px;
+    margin: 0;
+  
+}
+
+
+/*toggle button*/
+
+#navbar #toggle {
+    opacity: 0.95;
+    font-size: 22px;
+    color:#f8f8fa;
+    position: relative;
+    float: right;
+    font-weight: lighter;
+    margin: 2px;
+    display: none;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#navbar #toggle :hover {
+    color: whitesmoke;
+    opacity: 0.9;
+}
+
+.content {
+    background: #dfdedeb2;
+    color: #191B21;
+    font-size: 14px;
+    font-family: 'Montserrat';
+    padding: 10px;
+    border-radius: 10px;
+    justify-content: center;
+}
+
+#info,
+#itemsList {
+    display: block;
+    width: 45%;
+    padding: 1%;
+}
+
+#itemsList {
+    position: relative;
+    background: #f8f8fa;
+    overflow-y: scroll;
+    border-radius: 4px;
+    opacity: 0.78;
+    margin: 0;
+}
+
+#info {
+    background: #837862;
+}
+
+.songPanel {
+    cursor: pointer;
+    width: 100%;
+    background: #f8f8fa;
+    color: rgb(15, 15, 15);
+    padding: 2%;
+    margin-right: 0;
+    margin-left: 0;
+    margin-bottom: 1.3%;
+    font-size: 16px;
+    border:1px solid #181838;
+    border-radius: 5px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.songPanel:hover {
+    opacity: 0.7;
+}
+
+.songDuration {
+    color: #ffffff;
+    position: relative;
+    float: right;
+    padding: 10px;
+}
+
+#intro {
+    position: absolute;
+    font-family: 'Montserrat', 'sans-serif';
+    background: lightgray;
+    font-size: 20px;
+    width: 100%;
+    height: 100%;
+    padding: 2px;
+    margin: 0;
+    margin-top: 0;
+}
+
+
+/*notifications*/
+
+
+/*control panel */
+
+#control-panel {
+    box-shadow: 14px 14px 14px 14px black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 5px;
+    width: 100%;
+    height: 60px;
+    
+    background: #181838;
+}
+
+#play,
+#forward,
+#backward {
+    position: relative;
+    color: white;
+    font-size: 18px;
+    display: inline-block;
+    padding: 2px;
+    bottom: 60%;
+    cursor: pointer;
+}
+
+#backward {
+    left: 2%;
+}
+
+#play {
+    left: 3%;
+}
+
+#forward {
+    left: 3.5%;
+}
+
+#songTitle {
+    color: white;
+    left: 45%;
+    cursor: pointer;
+}
+
+#seek-bar-container {
+    display: inline-block;
+    height: 5px;
+    width: 60%;
+    margin-left: 8%;
+    margin-bottom: 3%;
+    background: #1F1E21;
+    cursor: pointer;
+}
+
+#signInView {
+    margin-top: 55px;
+    display: block;
+    padding: 6px;
+}
+
+
+/*input slider as seekbar*/
+
+#seek-bar-container .slide {
+    opacity: 0.8;
+    height: 2px;
+    background: rgb(174, 173, 177);
+    cursor: pointer;
+}
+
+#fc-seek-bar-container .slide {
+    opacity: 0.8;
+    height: 3px;
+    background: rgb(174, 173, 177);
+    cursor: pointer;
+}
+
+input[type=range] {
+    padding: 0;
+    margin: 0;
+    -webkit-appearance: none;
+}
+
+.slide::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 11px;
+    width: 11px;
+    border-radius: 100%;
+    background: rgb(253, 245, 245);
+}
+
+.slide::-moz-range-thumb {
+    height: 11px;
+    width: 11px;
+    border-radius: 100%;
+    -moz-appearance: none;
+    background: rgb(253, 245, 245);
+}
+
+
+/*full page controls */
+
+#fc-play,
+#fc-pause,
+#fc-forward,
+#fc-backward {
+    font-size: 22px;
+    color: white;
+    padding: 2%;
+    cursor: pointer;
+}
+
+#fc-seek-bar-container {
+    display: inline-block;
+    height: 4px;
+    width: 90%;
+    background: #1F1E21;
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+
+/*keyframes for loading the control panel*/
+
+@keyframes load {
+    0% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0.98;
+    }
+}
+
+#fullPageControls {
+    background: #181838;
+    display: none;
+    opacity: 0.98;
+    width: 100%;
+    position: fixed;
+    top: 55px;
+    margin: 0;
+    height: 100%;
+    animation-name: load;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+    animation-duration: 2s;
+    overflow: hidden;
+}
+
+#fullPageControls i {
+    position: relative;
+    color: white;
+    float: right;
+    right: 10px;
+    top: 10px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+#full-title {
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+#fullPageControls #thumbnail {
+    width: 200px;
+    border-radius: 2px;
+    height: 200px;
+    padding: 2%;
+    margin: 2%;
+    opacity: 0.9;
+    display: block;
+}
+
+
+/*media queries for mobile view */
+
+@media only screen and (max-width:800px) {
+    @keyframes reveal {
+        from {
+            transform: translate(0px, 60px);
+        }
+        to {
+            transform: translate(0px, 0px);
+        }
+        0% {
+            opacity: 0.2;
+        }
+        25% {
+            opacity: 0.4;
+        }
+        50% {
+            opacity: 0.6;
+        }
+        75% {
+            opacity: 0.8;
+        }
+        100% {
+            opacity: 0.95;
+        }
+    }
+    #info {
+        display: none;
+    }
+    #itemsList {
+        width: 100%;
+        margin-top: 2px;
+        margin-bottom: 100px;
+        padding: 3%;
+        overflow-y: scroll;
+    }
+    #control-panel {
+        height: 60px;
+        animation-name: reveal;
+        animation-duration: 4.5s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
+    #play,
+    #forward,
+    #backward {
+        bottom: 6px;
+    }
+    #play {
+        left: 3%;
+    }
+    #navbar #toggle {
+        display: inline-block;
+        margin: 5px;
+    }
+}
+
+.loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: red;
+}
+
+#cover {
+    top: 0;
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: #181838;
+}
+
+.abcRioButtonContentWrapper {
+    color: black;
+    font-weight: bolder;
+    font-family: 'Montserrat', 'sans-serif';
+}
+
+.abcRioButtonIcon {
+    background: transparent;
+}
+
+#cover-1 {
+    top: 0;
+    z-index: 1;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    opacity: 0.95;
+}
+
+.glyphicon:hover {
+    opacity: 0.5;
+}
